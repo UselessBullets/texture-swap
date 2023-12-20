@@ -1,16 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "textureswap",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "Texture Swap",
   "description": "This mod aims to help new BTA modders.",
   "authors": [
     "Turnip Labs"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://github.com/FatherCheese/texture-swap",
+		"issues": "https://github.com/FatherCheese/texture-swap/issues",
+    "sources": "https://github.com/Turnip-Labs/bta-example-mod"
   },
 
   "license": "CC0-1.0",
@@ -18,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-        "turniplabs.examplemod.ExampleMod"
+      "cookie.texture.TextureSwap"
     ]
   },
   "mixins": [
-      "examplemod.mixins.json"
+		"textureswap.mixins.json"
   ],
 
   "depends": {
