@@ -6,8 +6,6 @@ public class Textures {
 	public TextureEntry[] textures;
 
 	public Textures() {
-		textures = new TextureEntry[] {
-			new TextureEntry("item_ingot_iron", new HashMap<String, Integer>(){{put("OwO", 1); put("Whats this...?", 2);}}),
-		};
+		textures = new TextureEntry[] {};
 	}
 }

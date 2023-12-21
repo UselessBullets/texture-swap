@@ -3,11 +3,13 @@ package cookie.texture.util;
 import com.google.gson.stream.JsonReader;
 import cookie.texture.TextureSwap;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.item.Item;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static cookie.texture.TextureSwap.LOGGER;
@@ -30,5 +32,22 @@ public class TextureHelper {
 		} catch (NullPointerException ignored){
 			LOGGER.info("null");
 		}
+	}
+
+	public static Item getItemFromKey(String key) {
+		for(Item item : Item.itemsList) {
+			if (item != null) {
+				if (item.getKey().equalsIgnoreCase(key)) {
+					return item;
+				}
+			}
+		}
+		throw new NullPointerException("Could not find an item that corresponds to key '" + key + "'");
+	}
+
+	public static InputStreamReader getFolderFromKey(String key, String number) {
+		String theFiles = "/textureswap/" + key.replace(".", "_") + "/" + number + ".png";
+
+		return new InputStreamReader(mc.texturePackList.selectedTexturePack.getResourceAsStream(theFiles));
 	}
 }
