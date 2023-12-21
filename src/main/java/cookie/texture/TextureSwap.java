@@ -44,7 +44,7 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
 	@Override
 	public void afterGameStart() {
 		TextureHelper.loadTexturesFromJson();
-		for (TextureEntry entry : TextureHelper.textureEntryFiles.values()){
+		for (TextureEntry entry : TextureHelper.textureEntryFiles){
 			LOGGER.info(entry.itemName);
 		}
 	}
