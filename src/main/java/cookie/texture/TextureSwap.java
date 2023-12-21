@@ -2,14 +2,18 @@ package cookie.texture;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import cookie.texture.util.JsonSerializationData;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonWriter;
+import cookie.texture.util.Textures;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import turniplabs.halplibe.helper.TextureHelper;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
-import turniplabs.halplibe.util.TextureHandler;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint {
@@ -20,15 +24,16 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
     @Override
     public void onInitialize() {
 		// Serialization
-		JsonSerializationData obj = new JsonSerializationData();
-		GSON.toJson(obj);
+		Textures obj = new Textures();
+		GSON = new GsonBuilder().setPrettyPrinting().create();
 
-		//
+		try (FileWriter writer = new FileWriter("textureswap/textures.json")) {
+			GSON.toJson(obj, writer);
+		} catch (IOException e) {
+            System.err.println("Couldn't create textureswap/textures.json!");
+			e.printStackTrace();
+        }
 
-		// De-serialization
-
-		// Finish
-		TextureHelper.getOrCreateItemTexture(MOD_ID, obj.newTexture);
         LOGGER.info("TextureSwap initialized.");
     }
 
