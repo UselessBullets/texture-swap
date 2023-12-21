@@ -2,9 +2,7 @@ package cookie.texture;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonWriter;
+import cookie.texture.util.TextureHelper;
 import cookie.texture.util.Textures;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -44,7 +42,8 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
 
 	@Override
 	public void afterGameStart() {
-
+		if (TextureHelper.loadTexturesFromJson() != null)
+			LOGGER.info(TextureHelper.loadTexturesFromJson().itemName);
 	}
 
 	@Override

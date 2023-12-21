@@ -7,7 +7,7 @@ public class Textures {
 
 	public Textures() {
 		textures = new TextureEntry[] {
-			new TextureEntry("item_ingot_iron", new HashMap<String, Integer>(){{put("OwO", 1); put("What's this...?", 2);}}),
+			new TextureEntry("item_ingot_iron", new HashMap<String, Integer>(){{put("OwO", 1); put("Whats this...?", 2);}}),
 		};
 	}
 }

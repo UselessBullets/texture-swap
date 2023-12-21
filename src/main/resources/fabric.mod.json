@@ -6,8 +6,11 @@
   "name": "Texture Swap",
   "description": "This mod aims to help new BTA modders.",
   "authors": [
-    "Turnip Labs"
+    "Cookie Cakes"
   ],
+	"contributors": [
+		"UselessBullets (coding help)"
+	],
   "contact": {
     "homepage": "https://github.com/FatherCheese/texture-swap",
 		"issues": "https://github.com/FatherCheese/texture-swap/issues",
@@ -20,7 +23,10 @@
   "entrypoints": {
     "main": [
       "cookie.texture.TextureSwap"
-    ]
+    ],
+		"afterGameStart": [
+			"cookie.texture.TextureSwap"
+		]
   },
   "mixins": [
 		"textureswap.mixins.json"
