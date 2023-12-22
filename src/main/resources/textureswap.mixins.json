@@ -4,6 +4,7 @@
   "package": "cookie.texture.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ItemRendererMixin",
     "ItemstackMixin",
     "RenderEngineMixin"
   ],

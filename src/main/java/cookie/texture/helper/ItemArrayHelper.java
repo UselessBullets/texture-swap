@@ -1,5 +1,6 @@
 package cookie.texture.helper;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.item.Item;
 import turniplabs.halplibe.helper.ItemCoords;
 import turniplabs.halplibe.util.TextureHandler;
@@ -20,7 +21,8 @@ public class ItemArrayHelper {
 			"/textureswap/" + textureSource,
 			Item.iconCoordToIndex(x, y),
 			16,
-			1));
+			1,
+			Minecraft.getMinecraft(Minecraft.class)));
 	}
 
 	public static int[] getOrCreateDynamicTexture(String textureSource) {

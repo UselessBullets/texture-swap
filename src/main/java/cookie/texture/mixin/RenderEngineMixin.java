@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class RenderEngineMixin {
 	@Shadow
 	private List<DynamicTexture> dynamicTextures;
-    @Inject(method = "initDynamicTextures", at = @At(value = "TAIL"))
+	@Inject(method = "initDynamicTextures", at = @At(value = "TAIL"))
 	private void textureswap_updateSize(List<Throwable> errors, CallbackInfo ci) {
 		Minecraft mc = Minecraft.getMinecraft(Minecraft.class);
 		ItemArrayHelper.packChange();
