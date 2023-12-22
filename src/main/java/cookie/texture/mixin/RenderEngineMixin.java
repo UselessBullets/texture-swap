@@ -27,49 +27,37 @@ public abstract class RenderEngineMixin {
 
 	@Inject(method = "initDynamicTextures", at = @At("TAIL"))
 	private void textureswap_initJson(List<Throwable> errors, CallbackInfo ci) {
-		TextureHelper.textureEntryFiles.clear(); // I just meant to add this :kekw:
-		TextureHelper.loadTexturesFromJson();
-
-		for (TextureEntry entry : TextureHelper.textureEntryFiles){
-			try {
-				TextureHelper.getItemFromKey(entry.itemName);
-			} catch (RuntimeException e) {
-				TextureSwap.LOGGER.info(entry.itemName + " is missing! Ingoring...");
-			}
-			for (int num: entry.entries.values()) {
-				try {
-					TextureHelper.getFolderFromKey(entry.itemName, String.valueOf(num));
-				} catch (NullPointerException e) {
-					TextureSwap.LOGGER.info("The folder for " + entry.itemName + " has changed! Ignoring...");
-				}
-
-				TextureSwap.LOGGER.info(String.valueOf(num));
-			}
-		}
+//		TextureHelper.textureEntryFiles.clear(); // I just meant to add this :kekw:
+//		TextureHelper.loadTexturesFromJson();
+//
+//		for (TextureEntry entry : TextureHelper.textureEntryFiles){
+//			try {
+//				TextureHelper.getItemFromKey(entry.itemName);
+//			} catch (RuntimeException e) {
+//				TextureSwap.LOGGER.info(entry.itemName + " is missing! Ingoring...");
+//			}
+//			for (int num: entry.entries.values()) {
+//				try {
+//					TextureHelper.getFolderFromKey(entry.itemName, String.valueOf(num));
+//				} catch (NullPointerException e) {
+//					TextureSwap.LOGGER.info("The folder for " + entry.itemName + " has changed! Ignoring...");
+//				}
+//
+//				TextureSwap.LOGGER.info(String.valueOf(num));
+//			}
+//		}
 	}
 
 	@Inject(method = "initDynamicTextures", at = @At("TAIL"))
 	private void textureswap_updateSize(List<Throwable> errors, CallbackInfo ci) {
 		Minecraft mc = Minecraft.getMinecraft(Minecraft.class);
-		ItemArrayHelper.registeredItemTextures.clear();
-
-		for (String key: ItemArrayHelper.textureDestinationResolutions.keySet()) {
-			// Updates atlas resolution references
-			GL11.glBindTexture(3553, renderEngine.getTexture(key));
-			int destinationResolution = GL11.glGetTexLevelParameteri(3553, 0, 4096) / ItemArrayHelper.textureAtlasWidths.get(key);
-			ItemArrayHelper.textureDestinationResolutions.put(key, destinationResolution);
-		}
+		TextureHelper.textureEntryFiles.clear(); // I just meant to add this :kekw:
+		ItemArrayHelper.packChange();
 
 		TextureHelper.loadTexturesFromJson();
 		for (TextureEntry entry : TextureHelper.textureEntryFiles){
-			TextureHelper.getItemFromKey(entry.itemName);
-
 			for (int num: entry.entries.values()) {
 				try {
-					ItemArrayHelper.registeredItemTextures.clear();
-					ItemArrayHelper.usedCoords.clear();
-
-					TextureHelper.getFolderFromKey(entry.itemName, String.valueOf(num));
 					ItemArrayHelper.getOrCreateDynamicTexture(entry.itemName.replace(".", "_") + "/" + num + ".png");
 					ItemArrayHelper.textureHandlers.forEach((handler) -> dynamicTextures.add(handler.newHandler(mc)));
 				} catch (RuntimeException e) {

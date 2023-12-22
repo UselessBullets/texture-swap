@@ -6,11 +6,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.item.Item;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static cookie.texture.TextureSwap.LOGGER;

@@ -13,17 +13,8 @@ import java.util.Map;
 public class ItemArrayHelper {
 	public static List<TextureHandler> textureHandlers = new ArrayList<>();
 	public static List<int[]> requestedCoords = new ArrayList<>();
-	public static List<int[]> usedCoords = new ArrayList<>();
+	public static List<int[]> freeCoords = new ArrayList<>();
 	public static Map<String, int[]> registeredItemTextures = new HashMap<>();
-	public static Map<String, Integer> textureDestinationResolutions = new HashMap<>();
-	public static Map<String, Integer> textureAtlasWidths = new HashMap<>();
-
-	static {
-		// Assign default texture atlas size
-		textureDestinationResolutions.put("/gui/items.png", 16);
-		// Assign default texture atlas size
-		textureAtlasWidths.put("/gui/items.png", Global.TEXTURE_ATLAS_WIDTH_TILES);
-	}
 
 	public static void addTextureToItems(String itemNumber, int x, int y) {
 		textureHandlers.add(new TextureHandler("/gui/items.png",
@@ -33,18 +24,25 @@ public class ItemArrayHelper {
 			1));
 	}
 
-	public static int[] getOrCreateDynamicTexture(String textureNumber) {
-		int[] possibleCoords = registeredItemTextures.get(textureNumber);
-		usedCoords.add(possibleCoords);
-
-		int[] newCoords = ItemCoords.nextCoords();
-		requestedCoords.add(newCoords);
-		registeredItemTextures.put(textureNumber, newCoords);
-		addTextureToItems(textureNumber, newCoords[0], newCoords[1]);
-
-		if (requestedCoords.size() > usedCoords.size())
-			return possibleCoords;
-		else
-			return newCoords;
+	public static int[] getOrCreateDynamicTexture(String textureSource) {
+		if (registeredItemTextures.containsKey(textureSource)){
+			return registeredItemTextures.get(textureSource);
+		}
+		int[] coords;
+		if (!freeCoords.isEmpty()){
+			coords = freeCoords.remove(0);
+		} else {
+			coords = ItemCoords.nextCoords();
+			requestedCoords.add(coords);
+		}
+		registeredItemTextures.put(textureSource, coords);
+		addTextureToItems(textureSource, coords[0], coords[1]);
+        return coords;
+    }
+	public static void packChange(){
+		registeredItemTextures.clear();
+		textureHandlers.clear();
+		freeCoords = new ArrayList<>();
+		freeCoords.addAll(requestedCoords);
 	}
 }

@@ -5,6 +5,7 @@ import cookie.texture.helper.ItemArrayHelper;
 import cookie.texture.util.TextureEntry;
 import cookie.texture.util.TextureHelper;
 import net.fabricmc.api.ModInitializer;
+import org.lwjgl.Sys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.HalpLibe;
@@ -30,16 +31,6 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
 
 	@Override
 	public void afterGameStart() {
-		TextureHelper.loadTexturesFromJson();
-		for (TextureEntry entry : TextureHelper.textureEntryFiles){
-			LOGGER.info(entry.itemName);
-			TextureHelper.getItemFromKey(entry.itemName);
-
-			for (int num: entry.entries.values()) {
-				TextureHelper.getFolderFromKey(entry.itemName, String.valueOf(num));
-				ItemArrayHelper.getOrCreateDynamicTexture(entry.itemName.replace(".", "_") + "/" + num + ".png");
-			}
-		}
 	}
 
 	@Override
