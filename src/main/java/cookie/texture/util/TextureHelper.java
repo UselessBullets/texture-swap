@@ -2,6 +2,7 @@ package cookie.texture.util;
 
 import com.google.gson.stream.JsonReader;
 import cookie.texture.TextureSwap;
+import cookie.texture.helper.ItemArrayHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.item.Item;
 
@@ -19,7 +20,7 @@ public class TextureHelper {
 
 	public static void loadTexturesFromJson() {
 		String jsonLoc = "/textureswap/textures.json";
-
+		textureEntryFiles.clear();
 		try {
 			JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(mc.texturePackList.selectedTexturePack.getResourceAsStream(jsonLoc))));
 			Textures textures = TextureSwap.GSON.fromJson(reader, Textures.class);
@@ -30,6 +31,15 @@ public class TextureHelper {
 			}
 		} catch (NullPointerException ignored){
 			LOGGER.info("null");
+		}
+		for (TextureEntry entry : TextureHelper.textureEntryFiles){
+			for (int num: entry.entries.values()) {
+				try {
+					ItemArrayHelper.getOrCreateDynamicTexture(entry.itemName.replace(".", "_") + "/" + num + ".png");
+				} catch (RuntimeException e) {
+					TextureSwap.LOGGER.warn("The folder for " + entry.itemName + " has changed! Ignoring...");
+				}
+			}
 		}
 	}
 
