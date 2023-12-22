@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class ItemArrayHelper {
 	public static List<TextureHandler> textureHandlers = new ArrayList<>();
+	public static List<int[]> requestedCoords = new ArrayList<>();
+	public static List<int[]> usedCoords = new ArrayList<>();
 	public static Map<String, int[]> registeredItemTextures = new HashMap<>();
 	public static Map<String, Integer> textureDestinationResolutions = new HashMap<>();
 	public static Map<String, Integer> textureAtlasWidths = new HashMap<>();
@@ -33,12 +35,16 @@ public class ItemArrayHelper {
 
 	public static int[] getOrCreateDynamicTexture(String textureNumber) {
 		int[] possibleCoords = registeredItemTextures.get(textureNumber);
-		if (possibleCoords != null)
-			return possibleCoords;
+		usedCoords.add(possibleCoords);
 
 		int[] newCoords = ItemCoords.nextCoords();
+		requestedCoords.add(newCoords);
 		registeredItemTextures.put(textureNumber, newCoords);
 		addTextureToItems(textureNumber, newCoords[0], newCoords[1]);
-		return newCoords;
+
+		if (requestedCoords.size() > usedCoords.size())
+			return possibleCoords;
+		else
+			return newCoords;
 	}
 }
