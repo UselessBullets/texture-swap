@@ -1,6 +1,5 @@
 package cookie.texture.helper;
 
-import net.minecraft.core.Global;
 import net.minecraft.core.item.Item;
 import turniplabs.halplibe.helper.ItemCoords;
 import turniplabs.halplibe.util.TextureHandler;
