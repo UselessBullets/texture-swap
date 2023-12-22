@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.item.Item;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,8 +46,8 @@ public class TextureHelper {
 		throw new NullPointerException("Could not find an item that corresponds to key '" + key + "'");
 	}
 
-	public static InputStreamReader getFolderFromKey(String key, String number) {
-		String theFiles = "/textureswap/" + key.replace(".", "_") + "/" + number + ".png";
+	public static InputStreamReader getFolderFromKey(String key, String num) {
+		String theFiles = "/textureswap/" + key.replace(".", "_") + "/" + num + ".png";
 
 		return new InputStreamReader(mc.texturePackList.selectedTexturePack.getResourceAsStream(theFiles));
 	}

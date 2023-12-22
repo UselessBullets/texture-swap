@@ -1,6 +1,7 @@
 package cookie.texture;
 
 import com.google.gson.Gson;
+import cookie.texture.helper.ItemArrayHelper;
 import cookie.texture.util.TextureEntry;
 import cookie.texture.util.TextureHelper;
 import net.fabricmc.api.ModInitializer;
@@ -8,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
-
-import java.util.Set;
 
 
 public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint {
@@ -37,7 +36,7 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
 
 			for (int num: entry.entries.values()) {
 				TextureHelper.getFolderFromKey(entry.itemName, String.valueOf(num));
-				turniplabs.halplibe.helper.TextureHelper.getOrCreateItemTexture(MOD_ID, num + ".png");
+				ItemArrayHelper.getOrCreateDynamicTexture(entry.itemName.replace(".", "_") + "/" + num + ".png");
 			}
 		}
 	}
