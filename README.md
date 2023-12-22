@@ -1,28 +1,25 @@
-# Example Mod
+# TextureSwap
 
-Template for making Babric mods for BTA!
-
-**Note: *DO NOT fork this repository unless you want to contribute!***
+A texture pack util for BTA!
 
 ## Prerequisites
-- JDK for Java 17 ([Eclipse Temurin](https://adoptium.net/temurin/releases/) recommended)
-- IntelliJ IDEA
-- Minecraft Development plugin (Optional, but highly recommended)
+- Babric Instance for BTA
+- HalpLibe >= 3.0.4
 
 ## Setup instructions
-   
 
-1. Click the `Use this template` button on this repo's page above. Choose `Create a new respository`, you will be redirected to a new page. Enter your repo's name and description, and hit `Create repository`.  
-   To get your project, open IntelliJ IDEA and click `Get from VCS`. Select `Repository URL` and enter your repo's url
-
-2. After the project has finished importing, close it and open it again.  
-   If that does not work, open the right sidebar with `Gradle` on it, open `Tasks` > `fabric` and run `ideaSyncTask`.
-
-3. Create a new run configuration by going in `Run > Edit Configurations`.  
-   Then click on the plus icon and select Gradle. In the `Tasks and Arguments` field enter `build`.  
-   Running it will build your finished jar files and put them in `build/libs/`.
-
-4. Lastly, open `File` > `Settings` and head to `Build, Execution, Development` > `Build Tools` > `Gradle`.  
-   Make sure `Build and run using` and `Run tests using` is set to `Gradle`.
-
-5. Done! Now, all that's left is to change every mention of `examplemod` and `turniplabs` to your own mod id and mod group, respectively. Happy modding!
+1. Make a folder in your texturepack named "textureswap"
+2. Make a txt file, change the filetype to .json and follow this example;
+{
+  "textures": [
+    {
+      "itemName": "item.tool.axe.diamond",
+      "entries": {
+        "Verigans Hammer": 0
+      }
+    }
+  ]
+}
+3. Make a folder in textureswap that matches the itemName, but replace . with _
+4. Put the texture you want the label to match inside of the itemName folder, make sure the .png matches the number!
+5. You should be good to go! Now name the item as the label name you set and it should change textures.
