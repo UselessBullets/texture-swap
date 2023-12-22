@@ -29,17 +29,17 @@ public class TextureHelper {
 				textureEntryFiles.add(entry);
 				LOGGER.info(entry.itemName);
 			}
-		} catch (NullPointerException ignored){
-			LOGGER.info("null");
-		}
-		for (TextureEntry entry : TextureHelper.textureEntryFiles){
-			for (int num: entry.entries.values()) {
-				try {
-					ItemArrayHelper.getOrCreateDynamicTexture(entry.itemName.replace(".", "_") + "/" + num + ".png");
-				} catch (RuntimeException e) {
-					TextureSwap.LOGGER.warn("The folder for " + entry.itemName + " has changed! Ignoring...");
+			for (TextureEntry entry : TextureHelper.textureEntryFiles){
+				for (int num: entry.entries.values()) {
+					try {
+						ItemArrayHelper.getOrCreateDynamicTexture(entry.itemName.replace(".", "_") + "/" + num + ".png");
+					} catch (RuntimeException e) {
+						TextureSwap.LOGGER.warn("The folder for " + entry.itemName + " has changed! Ignoring...");
+					}
 				}
 			}
+		} catch (NullPointerException ignored){
+			LOGGER.warn("No texture swap json found, skipping");
 		}
 	}
 
