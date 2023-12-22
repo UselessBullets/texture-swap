@@ -16,9 +16,9 @@ public class ItemArrayHelper {
 	public static List<int[]> freeCoords = new ArrayList<>();
 	public static Map<String, int[]> registeredItemTextures = new HashMap<>();
 
-	public static void addTextureToItems(String itemNumber, int x, int y) {
+	public static void addTextureToItems(String textureSource, int x, int y) {
 		textureHandlers.add(new TextureHandler("/gui/items.png",
-			"/textureswap/" + itemNumber,
+			"/textureswap/" + textureSource,
 			Item.iconCoordToIndex(x, y),
 			16,
 			1));

@@ -20,7 +20,6 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
 
     @Override
     public void onInitialize() {
-
         LOGGER.info("TextureSwap initialized.");
     }
 
@@ -31,6 +30,8 @@ public class TextureSwap implements ModInitializer, GameStartEntrypoint, RecipeE
 
 	@Override
 	public void afterGameStart() {
+		ItemArrayHelper.packChange();
+		TextureHelper.loadTexturesFromJson();
 	}
 
 	@Override
