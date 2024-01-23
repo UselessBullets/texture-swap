@@ -22,7 +22,7 @@ public abstract class PlayerRendererMixin extends LivingRenderer<EntityPlayer> {
 	private void textureSwap_changeArmorViaName(EntityPlayer entity, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> cir) {
 		ItemStack itemstack = entity.inventory.armorItemInSlot(3 - renderPass);
 		if (itemstack != null) {
-			if (itemstack.getItem() instanceof ItemArmor) {
+			if (itemstack.getItem() instanceof ItemArmor && !itemstack.getDisplayName().equals(itemstack.getItem().getTranslatedName(itemstack))) {
 				String path = "/armor/" + itemstack.getItemName().replace(".", "_") + "/" + itemstack.getDisplayName().replace(" ", "_").replace(TextFormatting.ITALIC.toString(), "") + "_" + (renderPass != 2 ? 1 : 2) + ".png";
 				loadTexture(path);
 			}
