@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = ItemRenderer.class, remap = false)
-public class ItemRendererMixin {
+public abstract class ItemRendererMixin {
 	@Redirect(method = "renderItem(Lnet/minecraft/core/entity/Entity;Lnet/minecraft/core/item/ItemStack;Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/Item;getIconIndex(Lnet/minecraft/core/item/ItemStack;)I"))
 	private int getActuallyCorrectIcon(Item instance, ItemStack itemstack){
 		return itemstack.getIconIndex();
