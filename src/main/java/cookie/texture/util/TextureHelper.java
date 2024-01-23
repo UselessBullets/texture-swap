@@ -39,7 +39,7 @@ public class TextureHelper {
 				}
 			}
 		} catch (NullPointerException ignored){
-			LOGGER.warn("No texture swap json found, skipping");
+			LOGGER.warn("No Texture Swap json found. Skipping.");
 		}
 	}
 
