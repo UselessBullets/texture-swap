@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemStack.class, remap = false)
-public abstract class ItemstackMixin {
+public abstract class ItemStackMixin {
 	@Shadow
 	private CompoundTag tag;
 
@@ -26,7 +26,7 @@ public abstract class ItemstackMixin {
 	public int itemID;
 
 	@Inject(method = "getIconIndex", at = @At("HEAD"), cancellable = true)
-	private void textureswap_changeIcon(CallbackInfoReturnable<Integer> cir) {
+	private void textureSwap_changeIcon(CallbackInfoReturnable<Integer> cir) {
 		if (this.tag.getBoolean("overrideName")){
 			String name = getDisplayName().replace(TextFormatting.ITALIC.toString(), "");
 			for (TextureEntry entry : TextureHelper.textureEntryFiles){
