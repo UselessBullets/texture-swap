@@ -2,7 +2,7 @@ package cookie.texture.helper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.item.Item;
-import turniplabs.halplibe.helper.ItemCoords;
+import turniplabs.halplibe.util.ItemCoords;
 import turniplabs.halplibe.util.TextureHandler;
 
 import java.util.ArrayList;
